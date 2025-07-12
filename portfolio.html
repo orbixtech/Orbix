@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | ORBIX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --color-dark-blue: #0B1930;
+            --color-dark-purple: #1A0B30;
+            --color-accent: #4F46E5;
+            --color-glow: #6366F1;
+            --color-text: #E2E8F0;
+            --color-text-secondary: #004099;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            color: white;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--color-dark-blue), var(--color-dark-purple));
+            color: var(--color-text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Efeitos de partículas (pode ser implementado com JS depois) */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+        
+        /* Seção de Portfólio */
+        .portfolio-section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .portfolio-title-area {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .portfolio-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(341deg, var(--color-text), #0e00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .portfolio-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-glow));
+            border-radius: 2px;
+        }
+        
+        .portfolio-desc {
+            font-size: 1.2rem;
+            color: white;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .portfolio-projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .portfolio-card {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(79, 70, 229, 0.1);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(79, 70, 229, 0.2),
+                        0 0 30px rgba(99, 102, 241, 0.1);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+        
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-glow));
+        }
+        
+        .portfolio-carousel {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .carousel-images {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            position: relative;
+        }
+        
+        .carousel-img.active {
+            opacity: 1;
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(15, 23, 42, 0.7);
+            border: 2px solid var(--color-accent);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .carousel-btn:hover {
+            background: var(--color-accent);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-btn.prev {
+            left: 15px;
+        }
+        
+        .carousel-btn.next {
+            right: 15px;
+        }
+        
+        .portfolio-info {
+            padding: 1.5rem;
+        }
+        
+        .portfolio-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(341deg, var(--color-text), #0e00ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: #45023c21;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+        
+        .project-desc {
+    color: #ffffff;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tech-tag {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--color-accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            background: rgba(11, 25, 48, 0.8);
+            padding: 3rem 2rem 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-brand {
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-glow));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: white;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-glow));
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--color-text-secondary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--color-accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Efeitos de hover e animações */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .portfolio-title {
+                font-size: 2.5rem;
+            }
+            
+            .portfolio-desc {
+                font-size: 1rem;
+            }
+            
+            .portfolio-projects {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Efeito de grid tech no background (opcional) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(11, 25, 48, 0.8) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(11, 25, 48, 0.8) 2px, transparent 2px);
+            background-size: 40px 40px;
+            z-index: -2;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeito de partículas (pode ser implementado com JS) -->
+    <div class="particles" id="particles-js"></div>
+    
+    <!-- PORTFÓLIO -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="portfolio-title-area" data-aos="fade-up">
+            <h2 class="portfolio-title">Portfólio</h2>
+            <p class="portfolio-desc">Conheça alguns dos nossos projetos desenvolvidos com tecnologia de ponta para diferentes segmentos.</p>
+        </div>
+        <div class="portfolio-projects">
+            <!-- Projeto 1 -->
+            <div class="portfolio-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="portfolio-carousel">
+                    <div class="carousel-images">
+                        <img src="bistro.jpg" alt="Projeto 1 - Imagem 1" class="carousel-img active">
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3 class="project-title">Site com Layout Premium</h3>
+                    <p class="project-desc">Apresenta interface elegante, navegação intuitiva e responsiva, destacando soluções visuais e técnicas que evidenciam qualidade e profissionalismo na criação web.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Html e Css/Tailwind</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">JS</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Projeto 2 -->
+            <div class="portfolio-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="portfolio-carousel">
+                    <div class="carousel-images">
+                        <img src="n8n.jpg" alt="Projeto 2 - Imagem 1" class="carousel-img active">
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3 class="project-title">Automação via N8n</h3>
+                    <p class="project-desc">Automação via n8n que gerencia atendimentos para vários segmentos, automatizando pedidos, rastreio e dúvidas básicas, agilizando respostas e otimizando o contato com clientes.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">N8n</span>
+                        <span class="tech-tag">Workflows</span>
+                        <span class="tech-tag">Webhooks</span>
+                    </div>
+                </div>
+            </div>
+    </section>
+  
+     
+     <!-- Footer -->
+     <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">ORBIX</div>
+                <p>Transformando o futuro através da tecnologia de ponta.</p>
+            </div>
+             <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="quemsomos.html">Sobre</a></li>
+                            <li><a href="portfolio.html">Portfólio</a></li>
+                            <li><a href="index.html#contato">Contato</a></li>
+                </ul>
+                    </div>
+                <div class="footer-section">
+                    <h4>Social</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/orbix_techlab/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/orbixtech" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ORBIX. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializa AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Carrossel de imagens
+        document.querySelectorAll('.portfolio-carousel').forEach(carousel => {
+            const images = carousel.querySelectorAll('.carousel-img');
+            const prevBtn = carousel.querySelector('.prev');
+            const nextBtn = carousel.querySelector('.next');
+            let currentIndex = 0;
+            
+            function showImage(index) {
+                images.forEach((img, i) => {
+                    img.classList.toggle('active', i === index);
+                });
+            }
+            
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                showImage(currentIndex);
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % images.length;
+                showImage(currentIndex);
+            });
+            
+            // Auto-rotate (opcional)
+            let interval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % images.length;
+                showImage(currentIndex);
+            }, 5000);
+            
+            carousel.addEventListener('mouseenter', () => clearInterval(interval));
+            carousel.addEventListener('mouseleave', () => {
+                interval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    showImage(currentIndex);
+                }, 5000);
+            });
+        });
+        
+        // Efeito de partículas (simplificado)
+        const particlesContainer = document.getElementById('particles-js');
+        if (particlesContainer) {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = `${Math.random() * 3 + 1}px`;
+                particle.style.height = particle.style.width;
+                particle.style.backgroundColor = `rgba(99, 102, 241, ${Math.random() * 0.5 + 0.1})`;
+                particle.style.borderRadius = '50%';
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                // Animação
+                const duration = Math.random() * 20 + 10;
+                particle.style.animation = `float ${duration}s infinite ease-in-out`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+    </script>
+</body>
+</html>
