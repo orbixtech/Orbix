@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem Somos | Orbix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --color-dark-blue: #0B1930;
+            --color-dark-purple: #1A0B30;
+            --color-accent: #4F46E5;
+            --color-glow: #6366F1;
+            --color-light: rgba(255, 255, 255, 0.9);
+            --color-text: rgba(255, 255, 255, 0.85);
+            --color-text-light: rgba(255, 255, 255, 0.7);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--color-text);
+            background: linear-gradient(135deg, var(--color-dark-blue) 0%, var(--color-dark-purple) 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-glow);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--color-text-light);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(11, 25, 48, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(79, 70, 229, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-light);
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo-img {
+            height: 45px;
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-img {
+            transform: scale(1.05);
+        }
+
+        .logo-glow {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, rgba(79, 70, 229, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(5px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--color-text-light);
+            position: relative;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--color-light);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--color-accent), var(--color-glow));
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-glow) 100%);
+            color: var(--color-light);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.5);
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .contact-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Sobre Section */
+        .sobre {
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sobre::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.05) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .section-container {
+            padding: 0 30px;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--color-light);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 20px;
+            background: linear-gradient(to right, var(--color-light), var(--color-glow));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--color-accent), var(--color-glow));
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+        }
+
+        .founders-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .founder-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 600px;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 1;
+        }
+
+        .founder-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .founder-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            border-color: var(--color-accent);
+        }
+
+        .founder-card:hover::before {
+            opacity: 1;
+        }
+
+        .founder-image {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .founder-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .founder-card:hover .founder-image img {
+            transform: scale(1.1);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 60%, var(--color-dark-blue));
+        }
+
+        .founder-info {
+            padding: 30px;
+            position: relative;
+        }
+
+        .founder-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--color-light);
+        }
+
+        .founder-info p {
+            color: var(--color-text-light);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tech-tags span {
+            background: rgba(79, 70, 229, 0.15);
+            color: var(--color-glow);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .tech-tags span:hover {
+            background: rgba(79, 70, 229, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.2);
+        }
+
+        .github-link a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--color-glow);
+            transition: var(--transition);
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 50px;
+            background: rgba(79, 70, 229, 0.1);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+
+        .github-link a:hover {
+            color: var(--color-light);
+            background: rgba(79, 70, 229, 0.2);
+            transform: translateX(5px);
+        }
+
+        .github-link i {
+            font-size: 1.4rem;
+        }
+
+        .about-story {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.9;
+            position: relative;
+            padding: 40px;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 20px;
+            border: 1px solid rgba(79, 70, 229, 0.1);
+            backdrop-filter: blur(5px);
+            box-shadow: var(--shadow);
+        }
+
+        .about-story::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, transparent 100%);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .about-story p {
+            margin-bottom: 25px;
+        }
+
+        .highlight {
+            color: var(--color-glow);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, var(--color-accent), var(--color-glow));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        .highlight:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .values-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .value-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(79, 70, 229, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            transition: var(--transition);
+            opacity: 0;
+        }
+
+        .value-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            border-color: var(--color-accent);
+        }
+
+        .value-card:hover::before {
+            opacity: 1;
+            transform: translate(50%, 50%);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-glow) 100%);
+            color: var(--color-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+            transition: var(--transition);
+        }
+
+        .value-card:hover .value-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--color-light);
+        }
+
+        .value-card p {
+            color: var(--color-text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(to bottom, var(--color-dark-blue) 0%, var(--color-dark-purple) 100%);
+            color: var(--color-light);
+            padding: 100px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--color-accent), transparent);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .footer-logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--color-light), var(--color-glow));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+        }
+
+        .footer-section {
+            min-width: 180px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--color-light);
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--color-accent), var(--color-glow));
+            border-radius: 2px;
+        }
+
+        .footer-links a {
+            color: var(--color-text-light);
+            display: block;
+            margin-bottom: 15px;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-light);
+            transform: translateX(8px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-glow) 100%);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-text-light);
+            font-size: 1rem;
+        }
+
+        /* Efeitos de partículas */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(99, 102, 241, 0.3);
+            border-radius: 50%;
+            filter: blur(2px);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsivo */
+        @media (max-width: 1200px) {
+            .founder-image {
+                height: 350px;
+            }
+            
+            .value-card {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .founder-info h3 {
+                font-size: 1.8rem;
+            }
+            
+            .about-story {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+                padding-bottom: 15px;
+            }
+
+            .section-header h2::after {
+                width: 80px;
+                height: 3px;
+            }
+
+            .founder-card {
+                max-width: 100%;
+            }
+
+            .founder-image {
+                height: 350px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .footer-links {
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .founder-image {
+                height: 300px;
+            }
+            
+            .founder-info {
+                padding: 20px;
+            }
+            
+            .founder-info h3 {
+                font-size: 1.6rem;
+            }
+            
+            .tech-tags {
+                gap: 8px;
+            }
+            
+            .tech-tags span {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .about-story {
+                padding: 20px;
+                font-size: 1.1rem;
+            }
+            
+            .value-card {
+                padding: 25px;
+            }
+        }
+
+        /* Estilos de transição de página */
+        body {
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        body.fade-out {
+            opacity: 0;
+        }
+
+        #page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0B1930 0%, #1A0B30 100%);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeito de partículas -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container container">
+            <div class="logo">
+                <img class="logo-img" src="favicon.svg" alt="Orbix Logo">
+                <div class="logo-glow"></div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="produto.html" class="nav-link">Produtos</a>
+                <a href="index.html#contato" class="nav-link">Contato</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Sobre Section -->
+        <section id="sobre" class="sobre">
+            <div class="section-container container">
+                <div class="section-header">
+                    <h2 data-aos="fade-up">Quem Somos</h2>
+                    <p data-aos="fade-up" data-aos-delay="100">Somos João Paulo e Ryan Arruda, dois jovens de 21 anos que decidiram sonhar grande quando o mundo queria nos prender em uma rotina vazia.</p>
+                </div>
+
+                <div class="founders-container">
+                    <div class="founder-card" data-aos="fade-right">
+                        <div class="founder-image">
+                            <img src="jp.png" alt="João Paulo - Fundador" loading="lazy">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="founder-info">
+                            <h3>João Paulo</h3>
+                            <p>Co-Founder & Full Stack Developer</p>
+                            <div class="tech-tags">
+                                <span>Frontend</span>
+                                <span>Backend</span>
+                                <span>DevOps</span>
+                                <span>Automação de Dados</span>
+                            </div>
+                            <div class="github-link">
+                                <a href="https://github.com/jpthebestusername" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                    <span>@jpthebestusername</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="founder-card" data-aos="fade-left">
+                        <div class="founder-image">
+                            <img src="ryan.png" alt="Ryan Arruda - Fundador" loading="lazy">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="founder-info">
+                            <h3>Ryan Arruda</h3>
+                            <p>Co-Founder & Database Specialist</p>
+                            <div class="tech-tags">
+                                <span>Backend</span>
+                                <span>Database</span>
+                                <span>Data Analysis</span>
+                                <span>Cybersecurity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-story" data-aos="fade-up">
+                    <p>A Orbix nasceu do cansaço de jovens: Em ver as pessoas sendo esmagadas por trabalhos sem propósito, 
+                    vivendo para cumprir metas que não são suas. Mas decidimos transformar 
+                    essa frustração em força.</p>
+                    
+                    <p>A Orbix é mais do que uma empresa de tecnologia. É a nossa resposta ao mundo que nos dizia para apenas 
+                    trabalhar e aceitar. Criamos a Orbix para trabalhar, sim mas com aquilo que a gente ama de verdade. 
+                    Para criar soluções digitais que tenham alma, que tenham impacto, e que, de alguma forma, deixem o mundo 
+                    um pouco melhor do que encontramos.</p>
+                    
+                    <p>Desenvolvemos <span class="highlight">Aplicações web</span>, 
+                    <span class="highlight">Automações via N8n e Twilio</span>, 
+                    <span class="highlight">Bancos de dados seguros</span>, 
+                    <span class="highlight">Criação de Apps Mobile</span> e 
+                    <span class="highlight">Tecnologias com foco em Cybersegurança</span> Porque acreditamos que a 
+                    tecnologia pode ser libertadora quando nasce do amor e do propósito. Somos uma startup que carrega o sonho 
+                    de dois amigos que só queriam uma coisa: trabalhar com o coração e viver com verdade.</p>
+                </div>
+
+                <div class="values-container">
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Inovação Constante</h3>
+                        <p>Sempre na vanguarda das últimas tecnologias para entregar soluções de ponta.</p>
+                    </div>
+
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="value-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Equipe Especializada</h3>
+                        <p>Profissionais altamente qualificados em desenvolvimento e design.</p>
+                    </div>
+
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Suporte Humanizado</h3>
+                        <p>Atendimento personalizado via WhatsApp e e-mail para estar sempre próximo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">ORBIX</div>
+                    <p>Transformando o futuro através da tecnologia.</p>
+                </div>
+             
+                    <div class="footer-section">
+                        <h4>Social</h4>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/orbix_techlab/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                            <a href="https://github.com/orbixtech" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ORBIX. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializa AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 120
+        });
+
+        // Efeito de partículas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamanho aleatório entre 5px e 15px
+                const size = Math.random() * 10 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posição aleatória
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Opacidade aleatória
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                // Duração da animação aleatória
+                particle.style.animationDuration = `${Math.random() * 20 + 10}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Cria as partículas quando a página carrega
+        window.addEventListener('load', createParticles);
+
+        // Efeito de hover nos cards dos fundadores
+        document.querySelectorAll('.founder-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+                card.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.4)';
+                card.style.borderColor = 'var(--color-accent)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+                card.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+                card.style.borderColor = 'rgba(79, 70, 229, 0.2)';
+            });
+        });
+
+        // Efeito de hover nos cards de valores
+        document.querySelectorAll('.value-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-15px)';
+                card.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.4)';
+                card.style.borderColor = 'var(--color-accent)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+                card.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+                card.style.borderColor = 'rgba(79, 70, 229, 0.1)';
+            });
+        });
+
+        // Efeito de hover nos links sociais
+        document.querySelectorAll('.social-links a').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                link.style.transform = 'translateY(-5px) scale(1.1)';
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                link.style.transform = '';
+            });
+        });
+
+        // Efeito de hover nos highlights
+        document.querySelectorAll('.highlight').forEach(highlight => {
+            highlight.addEventListener('mouseenter', () => {
+                highlight.style.color = 'var(--color-glow)';
+            });
+            
+            highlight.addEventListener('mouseleave', () => {
+                highlight.style.color = '';
+            });
+        });
+
+        // Função de transição de página suave
+        function smoothPageTransition(event) {
+            // Verifica se o link é para outra página
+            if (event.target.tagName === 'A' && event.target.hostname !== window.location.hostname) {
+                event.preventDefault();
+                const targetUrl = event.target.href;
+                
+                // Adiciona classe de fade out no body
+                document.body.classList.add('fade-out');
+                
+                // Mostra a transição
+                const transition = document.getElementById('page-transition');
+                transition.style.opacity = '1';
+                
+                // Navega para a nova página após a animação
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 500);
+            }
+        }
+
+        // Adiciona event listener para navegação suave
+        document.addEventListener('click', smoothPageTransition);
+
+        // Evento para remover fade out quando a página carrega
+        window.addEventListener('load', () => {
+            document.body.classList.remove('fade-out');
+            const transition = document.getElementById('page-transition');
+            transition.style.opacity = '0';
+        });
+    </script>
+</body>
+</html>
