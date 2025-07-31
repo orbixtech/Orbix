@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORBIX - Soluções Tecnológicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Variáveis */
+        :root {
+            --color-dark-blue: #0B1930;
+            --color-dark-purple: #1A0B30;
+            --color-accent: #4F46E5;
+            --color-glow: #6366F1;
+            --color-light: #FFFFFF;
+            --color-text-light: rgba(255, 255, 255, 0.8);
+            --transition: all 0.3s ease;
+            --gradient-primary: linear-gradient(135deg, var(--color-dark-blue), var(--color-dark-purple));
+            --gradient-accent: linear-gradient(135deg, var(--color-accent), var(--color-glow));
+        }
+
+        /* Reset e Estilos Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient-primary);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            background: rgba(11, 25, 48, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .logo-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, rgba(99, 102, 241, 0) 70%);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-glow {
+            opacity: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-link:hover {
+            color: var(--color-light);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-accent);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Seção de Produtos */
+        .produtos-section {
+            padding: 100px 10%;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #4F46E5, #6366F1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #9CA3AF;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .produto-card {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(79, 70, 229, 0.1);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .produto-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(79, 70, 229, 0.2),
+                        0 0 30px rgba(99, 102, 241, 0.1);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+
+        .produto-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-glow));
+        }
+
+        .produto-imagem-container {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .produto-imagem {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .produto-card:hover .produto-imagem {
+            transform: scale(1.05);
+        }
+
+        .produto-info {
+            padding: 1.5rem;
+        }
+
+        .produto-titulo {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .produto-descricao {
+            color: #9CA3AF;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .produto-preco {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-glow);
+            margin: 1rem 0;
+        }
+
+        .preco-observacao {
+            font-size: 0.9rem;
+            color: #9CA3AF;
+            margin-bottom: 1.5rem;
+        }
+
+        .beneficios-lista {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .beneficios-lista li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            color: #E2E8F0;
+        }
+
+        .beneficios-lista li::before {
+            content: '✓';
+            color: var(--color-accent);
+            font-weight: bold;
+            position: absolute;
+            left: -1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+            width: 100%;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--color-accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+        }
+         /* Footer */
+        .footer {
+            background: linear-gradient(to bottom, var(--color-dark-blue) 0%, var(--color-dark-purple) 100%);
+            color: var(--color-light);
+            padding: 100px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--color-accent), transparent);
+        }
+
+       .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .footer-brand {
+            flex: 1;
+            align-items: center;
+            min-width: 300px;
+        }
+
+        .footer-logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            background: white;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-section {
+            min-width: 180px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 11px;
+            color: var(--color-light);
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: linear-gradient(to right, var(--color-accent), var(--color-glow));
+            border-radius: 2px;
+        }
+
+        .footer-links a {
+            color: var(--color-text-light);
+            display: block;
+            margin-bottom: 10px;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-light);
+            transform: translateX(8px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 14px;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-glow) 100%);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-text-light);
+            font-size: 1rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .produtos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .section-header p {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-link {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Efeito de grid tech no background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(11, 25, 48, 0.8) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(11, 25, 48, 0.8) 2px, transparent 2px);
+            background-size: 40px 40px;
+            z-index: -2;
+            opacity: 0.1;
+        }
+
+        /* Efeito de partículas */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container container">
+            <div class="logo">
+                <img class="logo-img" src="favicon.svg" alt="Orbix Logo">
+                <div class="logo-glow"></div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="produto.html" class="nav-link">Produtos</a>
+                <a href="index.html#contato" class="nav-link">Contato</a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Seção de Produtos -->
+    <section class="produtos-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Nossas Soluções</h2>
+            <p>Tecnologia de ponta para impulsionar seu negócio. Escolha a solução perfeita para suas necessidades.</p>
+        </div>
+        
+        <div class="produtos-grid">
+            <!-- Produto 1: Criação de Sites -->
+            <div class="produto-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="produto-imagem-container">
+                    <img src="bistro.jpg" alt="Criação de Sites Profissionais" class="produto-imagem">
+                </div>
+                <div class="produto-info">
+                    <h3 class="produto-titulo">Criação de Sites Profissionais</h3>
+                    <p class="produto-descricao">Desenvolvemos sites personalizados, responsivos e otimizados para SEO, que aumentam sua presença online e impulsionam seus resultados.</p>
+                    
+                    <div class="produto-preco">R$ 1000 no pix ou R$ 1500 no cartáo de crédito (em até 2x)</div>
+                    <p class="preco-observacao">Promoção relampago para os proximos 3 clientes valido até dia 08/08/25</p>
+                    
+                    <ul class="beneficios-lista">
+                        <li>Design moderno e profissional</li>
+                        <li>100% responsivo (adaptável a celulares)</li>
+                        <li>Otimizado para mecanismos de busca</li>
+                        <li>Integração com redes sociais</li>
+                        <li>Suporte técnico especializado</li>
+                    </ul>
+                    
+                    <a href="https://wa.me/5511978073711?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20a%20criação%20de%20sites%20profissionais" class="cta-button" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Fazer Orçamento
+                    </a>
+                    
+                    <div class="tech-tags">
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">SEO</span>
+                        <span class="tech-tag">Design Responsivo</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Produto 2: Automação WhatsApp -->
+            <div class="produto-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="produto-imagem-container">
+                    <img src="n8n.jpg" alt="Automação de WhatsApp com N8n" class="produto-imagem">
+                </div>
+                <div class="produto-info">
+                    <h3 class="produto-titulo">Automação de WhatsApp com N8n</h3>
+                    <p class="produto-descricao">Automatize seu atendimento para economizar tempo, melhorar a comunicação com clientes e aumentar suas vendas.</p>
+                    
+                    <div class="produto-preco">A partir de R$ 700,00</div>
+                    
+                    <ul class="beneficios-lista">
+                        <li>Respostas automáticas para perguntas frequentes</li>
+                        <li>Agendamento de atendimentos</li>
+                        <li>Integração com seu CRM</li>
+                        <li>Relatórios de desempenho</li>
+                        <li>Redução de custos com atendimento</li>
+                    </ul>
+                    
+                    <a href="https://wa.me/5511978073711?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20a%20automação%20de%20WhatsApp%20com%20N8n" class="cta-button" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Fazer Orçamento
+                    </a>
+                    
+                    <div class="tech-tags">
+                        <span class="tech-tag">N8n</span>
+                        <span class="tech-tag">WhatsApp API</span>
+                        <span class="tech-tag">Automação</span>
+                        <span class="tech-tag">Workflows</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Produto 3: Aplicativos com Kodular -->
+            <div class="produto-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="produto-imagem-container">
+                    <img src="kodular.jpeg" alt="Aplicativos com Kodular" class="produto-imagem">
+                </div>
+                <div class="produto-info">
+                    <h3 class="produto-titulo">Aplicativos com Kodular</h3>
+                    <p class="produto-descricao">Criamos aplicativos sob medida para atender às necessidades específicas do seu negócio, sem a necessidade de programação complexa.</p>
+                    
+                    <div class="produto-preco">A partir de R$ 1.000,00</div>
+                    <p class="preco-observacao">ou 4x de R$ 250,00</p>
+                    
+                    <ul class="beneficios-lista">
+                        <li>Desenvolvimento rápido e eficiente</li>
+                        <li>Publicação nas lojas de aplicativos</li>
+                        <li>Integração com sistemas existentes</li>
+                        <li>Design intuitivo e amigável</li>
+                        <li>Manutenção e atualizações</li>
+                    </ul>
+                    
+                    <a href="https://wa.me/5511978073711?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20desenvolvimento%20de%20aplicativos%20com%20Kodular" class="cta-button" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Fazer Orçamento
+                    </a>
+                    
+                    <div class="tech-tags">
+                        <span class="tech-tag">Kodular</span>
+                        <span class="tech-tag">Android</span>
+                        <span class="tech-tag">iOS</span>
+                        <span class="tech-tag">App Development</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Produto 4: Power BI -->
+            <div class="produto-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="produto-imagem-container">
+                    <img src="BI.png" alt="Dashboards com Power BI" class="produto-imagem">
+                </div>
+                <div class="produto-info">
+                    <h3 class="produto-titulo">Dashboards com Power BI</h3>
+                    <p class="produto-descricao">Transformamos seus dados em informações claras e precisas para você tomar decisões estratégicas com confiança.</p>
+                    
+                    <div class="produto-preco">A partir de R$ 750,00</div>
+                    
+                    <ul class="beneficios-lista">
+                        <li>Visualização de dados intuitiva</li>
+                        <li>Relatórios em tempo real</li>
+                        <li>Integração com múltiplas fontes de dados</li>
+                        <li>Painéis personalizados</li>
+                        <li>Treinamento para sua equipe</li>
+                    </ul>
+                    
+                    <a href="https://wa.me/5511978073711?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20dashboards%20com%20Power%20BI" class="cta-button" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Fazer Orçamento
+                    </a>
+                    
+                    <div class="tech-tags">
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">Data Visualization</span>
+                        <span class="tech-tag">Business Intelligence</span>
+                        <span class="tech-tag">Analytics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">ORBIX</div>
+                <p>Transformando o futuro através da tecnologia de ponta.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h4>Social</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/orbix_techlab/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/orbixtech" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ORBIX. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

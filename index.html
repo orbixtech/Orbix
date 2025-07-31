@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORBIX - Inovação Digital & Tecnologia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+<body>
+    
+
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="orbix-logo">ORBIX</div>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+
+    <!-- Header -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img class="logo-img" src="favicon.svg" alt="Orbix Logo">
+                <div class="logo-glow"></div>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="quemsomos.html" class="nav-link">Quem Somos</a>
+                <a href="produto.html" class="nav-link">Produtos</a>
+                <a href="#contato" class="nav-link">Contato</a>
+            </div>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="typewriter">Transformando o Futuro</h1>
+            <p class="hero-subtitle">Desenvolvimento de software de alto impacto</p>
+            <div class="hero-cta">
+                <button class="secondary-btn transition-link" onclick="startPortfolioTransition()">
+                    <span>Ver Produtos</span>              
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="tech-sphere"></div>
+            <div class="floating-quote">
+                <div class="quote-card">
+                    <p class="quote-text">"O código é poesia em movimento."</p>
+                    <span class="quote-author">- Linus Torvalds</span>
+                </div>
+                <div class="quote-card" style="animation-delay: 4s;">
+                    <p class="quote-text">"Simplicidade é a sofisticação suprema."</p>
+                    <span class="quote-author">- Leonardo da Vinci</span>
+                </div>
+                <div class="quote-card" style="animation-delay: 8s;">
+                    <p class="quote-text">"A tecnologia move o mundo."</p>
+                    <span class="quote-author">- Steve Jobs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Serviços Section -->
+    <section id="servicos" class="servicos">
+        <div class="section-header">
+            <h2>Nossas Soluções</h2>
+            <p>Tecnologia de ponta para seu negócio</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" data-aos="zoom-in">
+                <div class="service-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Web Apps</h3>
+                <p>Aplicações web escaláveis e responsivas com as últimas tecnologias.</p>
+                <div class="service-hover">
+                    <ul>
+                        <li>React & Tailwind</li>
+                        <li>JS & Python</li>
+                        <li>Node.js & Python</li>
+                        <li>MongoDB & MySQL</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Mobile Apps</h3>
+                <p>Apps nativos e híbridos com performance excepcional.</p>
+                <div class="service-hover">
+                    <ul>
+                        <li>React Native</li>
+                        <li>Figma</li>
+                        <li>Android</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="service-icon">
+                    <i class="fa-solid fa-clipboard"></i>
+                </div>
+                <h3>Dashboards</h3>
+                <p>Dashboards e Automações de processos</p>
+                <div class="service-hover">
+                    <ul>
+                        <li>Power BI</li>
+                        <li>Twilio & N8n</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tecnologias" class="tech-stack">
+        <div class="section-header">
+            <h2>Nossa Stack</h2>
+            <p>Tecnologias que utilizamos</p>
+        </div>
+        <div class="tech-container">
+            <div class="tech-category" data-aos="fade-up">
+                <h3>Frontend</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">HTML5</div>
+                    <div class="tech-item">CSS/Tailwind</div>
+                    <div class="tech-item">JavaScript</div>
+                    <div class="tech-item">Python</div>
+                </div>
+            </div>
+            <div class="tech-category" data-aos="fade-up" data-aos-delay="100">
+                <h3>Backend</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">Python</div>
+                    <div class="tech-item">Node.js</div>
+                    <div class="tech-item">Chat Bot</div>
+                </div>
+            </div>
+            <div class="tech-category" data-aos="fade-up" data-aos-delay="200">
+                <h3>Database</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">MongoDB</div>
+                    <div class="tech-item">MySQL</div>
+                    <div class="tech-item">SQL Server</div>
+                </div>
+            </div>
+            <div class="tech-category" data-aos="fade-up" data-aos-delay="300">
+                <h3>Mobile</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">Kodular</div>
+                </div>
+            </div>
+                <div class="tech-category" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Dashboard</h3>
+                    <div class="tech-grid">
+                        <div class="tech-item">Power BI</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="contato">
+        <div class="contact-container">
+            <div class="contact-info" data-aos="fade-right">
+                <h2>Vamos Conversar?</h2>
+                <p>Estamos prontos para transformar suas ideias em realidade.</p>
+                <div class="contact-methods">
+                    <a href="mailto:orbixdigital.tech@gmail.com" class="contact-method">
+                        <i class="far fa-envelope"></i>
+                        <span>orbixdigital.tech@gmail.com</span>
+                    </a>
+                    <a href="tel:+5511978073711" class="contact-method">
+                        <i class="fas fa-phone"></i>
+                        <span>11 97807-3711</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+           <form class="contact-form" data-aos="fade-left" action="https://formsubmit.co/orbixdigital.tech@gmail.com" method="POST">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="Novo contato do site ORBIX!">
+<input type="hidden" name="_autoresponse" value="Obrigado por nos contatar! Responderemos em até 24h.">
+    <div class="form-group">
+        <input type="text" name="name" required>
+        <label>Nome</label>
+    </div>
+    <div class="form-group">
+        <input type="email" name="email" required>
+        <label>E-mail</label>
+    </div>
+    <div class="form-group">
+    <input type="tel" name="Telefone">
+    <label>Telefone</label>
+</div>
+    <div class="form-group">
+        <textarea name="message" required></textarea>
+        <label>Mensagem</label>
+    </div>
+    <button type="submit" class="submit-btn">
+        <span>Enviar Mensagem</span>
+        <i class="fas fa-paper-plane"></i>
+    </button>
+</form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">ORBIX</div>
+                    <p>Transformando o futuro através da tecnologia.</p>
+                </div>
+                
+                    <div class="footer-section">
+                        <h4>Social</h4>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/orbix_techlab/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                            <a href="https://github.com/orbixtech" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ORBIX. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Transição Premium -->
+<div class="page-transition" id="pageTransition">
+    <div class="transition-particles" id="transitionParticles"></div>
+    <img src="favicon.svg" alt="ORBIX" class="transition-logo">
+    <div class="transition-progress">
+        <div class="transition-progress-bar">
+            <div class="transition-progress-fill" id="transitionProgress"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
